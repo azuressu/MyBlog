@@ -26,6 +26,12 @@
 2. JSON을 반환하는 API 형태로 진행하기
 3. 서버가 반환하는 결과값을 Postman으로 확인하기
 
+## 사용한 Tool
+<img src="https://img.shields.io/badge/git-F05032?style=flat&logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/github-181717?style=flat&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/java-007396?style=flat&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/intellijidea-000000?style=flat&logo=intellijidea&logoColor=white"/>
+
 
 ## 🪶 API 명세서
 <p align="center">
