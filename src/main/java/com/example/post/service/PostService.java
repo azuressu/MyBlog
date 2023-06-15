@@ -7,6 +7,7 @@ import com.example.post.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -58,29 +59,31 @@ public class PostService {
         }
     }
 
-    public String deletePost(Long id, String password) {
+    // Param 방식
+//    public String deletePost(Long id, String password) {
+//        Post post = findPost(id);
+//
+//        // 비밀번호 확인 후
+//        if (post.getPassword().equals(password)) {
+//            postRepository.delete(post);
+//            return "{\"success\":\"true\"}";
+//        } else {
+//            return "{\"success\":\"false\"}";
+//        }
+//    }
+
+    // RequestBody 방식
+    public String deletePost(Long id, PostRequestDto requestDto) {
         Post post = findPost(id);
 
         // 비밀번호 확인 후
-        if (post.getPassword().equals(password)) {
+        if (post.getPassword().equals(requestDto.getPassword())) {
             postRepository.delete(post);
             return "{\"success\":\"true\"}";
         } else {
             return "{\"success\":\"false\"}";
         }
     }
-
-    /*public Long deletePost(Long id, String password) {
-        Post post = findPost(id);
-
-        // 비밀번호 확인 후
-        if (post.getPassword().equals(password)) {
-            postRepository.delete(post);
-            return id;
-        } else {
-            return (long) 0.0;
-        }
-    }*/
 
     // 해당 포스트를 찾아서 반환
     private Post findPost(Long id) {
