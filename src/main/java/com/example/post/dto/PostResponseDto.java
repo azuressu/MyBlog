@@ -3,7 +3,6 @@ package com.example.post.dto;
 import com.example.post.entity.Post;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter

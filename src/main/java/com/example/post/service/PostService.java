@@ -33,7 +33,7 @@ public class PostService {
     }
 
     public List<PostResponseDto> getPosts() {
-        return postRepository.findAllByOrderByModifyTimeDesc().stream().map(PostResponseDto::new).toList();
+        return postRepository.findAllByOrderByCreateTimeDesc().stream().map(PostResponseDto::new).toList();
     }
 
     public PostResponseDto getOnePost(Long id) {

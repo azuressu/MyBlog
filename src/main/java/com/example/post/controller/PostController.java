@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController // ResponseBody는 붙이면 안됨 !
 @RequestMapping("/api")
 public class PostController {
 
