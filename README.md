@@ -29,30 +29,23 @@
 ## 사용한 Tool
 <img src="https://img.shields.io/badge/git-F05032?style=flat&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=flat&logo=github&logoColor=white">
-<img alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white">
+<img src ="https://img.shields.io/badge/Java-007396?&style=flat&logo=Java&logoColor=white">
 <img src="https://img.shields.io/badge/intellijidea-000000?style=flat&logo=intellijidea&logoColor=white">
 
 
 ## 🪶 API 명세서
-<p align="center">
-  <img src="https://github.com/azuressu/MyBlog/assets/74248726/4f754778-50b0-4e4b-a76f-a9ea1a1a9d0e">
-</p>
-<p align="center">
-  <img src="https://github.com/azuressu/MyBlog/assets/74248726/1f0ffc67-40f5-47bc-b0f1-d1ff1e1c82f8">
-</p>
+<img src="https://github.com/azuressu/MyBlog/assets/74248726/4f754778-50b0-4e4b-a76f-a9ea1a1a9d0e"  width="800"/>
+<img src="https://github.com/azuressu/MyBlog/assets/74248726/1f0ffc67-40f5-47bc-b0f1-d1ff1e1c82f8"  width="800"/>
 
 
 ## 📜 테이블 구성
-<p align="center">
-  <img src="https://github.com/azuressu/MyBlog/assets/74248726/7207f44b-7eb6-4cb8-b82f-6eda9dc8987d">
-</p>
+<img src="https://github.com/azuressu/MyBlog/assets/74248726/7207f44b-7eb6-4cb8-b82f-6eda9dc8987d"  width="800"/>
 
 
 ## 🛞 Use Case 다이어그램
 (정답은 아닌 것 같지만 그려보았다)
-<p align="center">
-  <img src="https://github.com/azuressu/MyBlog/assets/74248726/e3050766-1576-4548-a0c5-555ccac57ef9">
-</p>
+
+<img src="https://github.com/azuressu/MyBlog/assets/74248726/e3050766-1576-4548-a0c5-555ccac57ef9"  width="500"/>
 
 
 ## 🗂️ 파일 구성
