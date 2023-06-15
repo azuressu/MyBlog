@@ -44,7 +44,7 @@ public class PostController {
     // https://scoring.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-REST-Controller%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%EB%90%98%EB%8A%94-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98
     // Param 방식
     @DeleteMapping("/posts/{id}")
-    public String deleteMemo(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
+    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
         return postService.deletePost(id, requestDto);
     }
 
