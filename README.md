@@ -35,7 +35,7 @@
 
 ## 🪶 API 명세서
 <img src="https://github.com/azuressu/MyBlog/assets/74248726/4f754778-50b0-4e4b-a76f-a9ea1a1a9d0e"  width="800"/>
-<img src="https://github.com/azuressu/MyBlog/assets/74248726/1f0ffc67-40f5-47bc-b0f1-d1ff1e1c82f8"  width="800"/>
+<img src="https://github.com/azuressu/MyBlog/assets/74248726/00fdea90-77e3-4a0c-9f2b-9285cd2871d6"  width="800"/>
 
 
 ## 📜 테이블 구성
