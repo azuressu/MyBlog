@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class PostController {
 
-    // 제어의 흐름 : MemoController → MemoService → MemoRepository
+    // 제어의 흐름 : PostController → PostService → PostRepository
     private final PostService postService;
 
     public PostController(PostService postService) {
@@ -47,7 +47,7 @@ public class PostController {
         return postService.deletePost(id, password);
     }*/
     @DeleteMapping("/posts/{id}")
-    public String deleteMemo(@PathVariable Long id, @RequestParam String password){
+    public String deletePost(@PathVariable Long id, @RequestParam String password){
         return postService.deletePost(id, password);
     }
 }
