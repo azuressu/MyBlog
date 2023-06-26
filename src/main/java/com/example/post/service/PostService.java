@@ -4,6 +4,7 @@ import com.example.post.dto.PostRequestDto;
 import com.example.post.dto.PostResponseDto;
 import com.example.post.entity.Post;
 import com.example.post.repository.PostRepository;
+import com.example.post.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +23,15 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public PostResponseDto createPost(PostRequestDto requestDto) {
-        Post post = new Post(requestDto);
+    public PostResponseDto createPost(PostRequestDto requestDto, UserDetailsImpl userDetails) {
+        Post post = new Post();
+        post.setUser(userDetails.getUser());
+        post.setTitle(requestDto.getTitle());
+        post.setContents(requestDto.getContents());
 
         // DB에 저장
         Post savePost = postRepository.save(post);
-
         PostResponseDto postResponseDto = new PostResponseDto(savePost);
-
         return postResponseDto;
     }
 
@@ -49,40 +51,19 @@ public class PostService {
     public PostResponseDto updatePost(Long id, PostRequestDto requestDto) {
         Post post = findPost(id);
 
-        // 비밀번호 확인 후
-        if (post.getPassword().equals(requestDto.getPassword())) {
-            post.update(requestDto);
-            PostResponseDto postResponseDto = new PostResponseDto(post);
-            return postResponseDto;
-        } else {
-            return null;
-        }
+
+        post.update(requestDto);
+        PostResponseDto postResponseDto = new PostResponseDto(post);
+        return postResponseDto;
+
     }
 
-    // Param 방식
-//    public String deletePost(Long id, String password) {
-//        Post post = findPost(id);
-//
-//        // 비밀번호 확인 후
-//        if (post.getPassword().equals(password)) {
-//            postRepository.delete(post);
-//            return "{\"success\":\"true\"}";
-//        } else {
-//            return "{\"success\":\"false\"}";
-//        }
-//    }
-
-    // RequestBody 방식
     public String deletePost(Long id, PostRequestDto requestDto) {
         Post post = findPost(id);
 
-        // 비밀번호 확인 후
-        if (post.getPassword().equals(requestDto.getPassword())) {
-            postRepository.delete(post);
-            return "{\"success\":\"true\"}";
-        } else {
-            return "{\"success\":\"false\"}";
-        }
+        postRepository.delete(post);
+        return "{\"success\":\"true\"}";
+
     }
 
     // 해당 포스트를 찾아서 반환

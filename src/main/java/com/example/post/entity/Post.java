@@ -20,22 +20,19 @@ public class Post extends Timestamped{
     private String title;
     @Column(name = "contents", nullable = false)
     private String contents;
-    @Column(name = "username", nullable = false)
-    private String username;
-    @Column(name = "password", nullable = false)
-    private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Post(PostRequestDto requestDto) {
         this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
-        this.password = requestDto.getPassword();
     }
 
     public void update(PostRequestDto requestDto) {
         // 제목, 작성자명, 작성 내용을 수정
         this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
     }
 }

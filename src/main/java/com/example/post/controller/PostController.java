@@ -2,7 +2,9 @@ package com.example.post.controller;
 
 import com.example.post.dto.PostRequestDto;
 import com.example.post.dto.PostResponseDto;
+import com.example.post.security.UserDetailsImpl;
 import com.example.post.service.PostService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,37 +20,32 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/posts")
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
-        return postService.createPost(requestDto);
+    // 게시글 작성
+    @PostMapping("/post")
+    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return postService.createPost(requestDto, userDetails);
     }
 
+    // 전체 게시글 조회 (Token 상관 없음 - WebSecurityConfig에서 설정)
     @GetMapping("/posts")
     public List<PostResponseDto> getPosts() {
         return postService.getPosts();
     }
 
-    @GetMapping("/posts/{id}")
+    // 선택 게시글 조회 (Token 상관 없음 - WebSecurityConfig에서 설정)
+    @GetMapping("/post/{id}")
     public PostResponseDto getOnePost(@PathVariable Long id) {
         return postService.getOnePost(id);
     }
 
-    @PutMapping("/posts/{id}")
-    public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+    @PutMapping("/post/{id}")
+    public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return postService.updatePost(id, requestDto);
     }
 
-    // 비밀번호 처리 어떻게 할 건지 생각해보기
-    // RequestParam은 key와 value를 url에 전달함
-    // RequestBody 방식
-    @DeleteMapping("/posts/{id}")
-    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
+    @DeleteMapping("/post/{id}")
+    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return postService.deletePost(id, requestDto);
     }
 
-    // Param 방식
-//    @DeleteMapping("/posts/{id}")
-//    public String deletePost(@PathVariable Long id, @RequestParam String password){
-//        return postService.deletePost(id, password);
-//    }
 }

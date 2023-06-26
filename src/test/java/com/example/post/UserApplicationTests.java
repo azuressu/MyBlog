@@ -45,5 +45,6 @@ public class UserApplicationTests {
         loginRequestDto.setUsername("sysysysy");
         loginRequestDto.setPassword("highlight1234");
 
+        System.out.println();
     }
 }
