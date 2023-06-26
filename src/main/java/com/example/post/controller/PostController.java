@@ -2,6 +2,7 @@ package com.example.post.controller;
 
 import com.example.post.dto.PostRequestDto;
 import com.example.post.dto.PostResponseDto;
+import com.example.post.dto.StatusResponseDto;
 import com.example.post.security.UserDetailsImpl;
 import com.example.post.service.PostService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -40,12 +41,12 @@ public class PostController {
 
     @PutMapping("/post/{id}")
     public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return postService.updatePost(id, requestDto);
+        return postService.updatePost(id, requestDto, userDetails);
     }
 
     @DeleteMapping("/post/{id}")
-    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        return postService.deletePost(id, requestDto);
+    public StatusResponseDto deletePost(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.deletePost(id, userDetails);
     }
 
 }

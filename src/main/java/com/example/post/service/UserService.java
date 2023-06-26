@@ -1,13 +1,11 @@
 package com.example.post.service;
 
-import com.example.post.dto.LoginRequestDto;
 import com.example.post.dto.SignupRequestDto;
-import com.example.post.dto.SignupResponseDto;
+import com.example.post.dto.StatusResponseDto;
 import com.example.post.entity.User;
 import com.example.post.entity.UserRoleEnum;
 import com.example.post.jwt.JwtUtil;
 import com.example.post.repository.UserRepository;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,7 +30,7 @@ public class UserService {
     // ADMIN_TOKEN
     private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
 
-    public SignupResponseDto signup(SignupRequestDto requestDto) {
+    public StatusResponseDto signup(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
 
         String inputpassword = requestDto.getPassword();
@@ -65,11 +63,11 @@ public class UserService {
 
 //        String password = passwordEncoder.encode(requestDto.getPassword());
 
-        SignupResponseDto signupResponseDto = new SignupResponseDto();
-        signupResponseDto.setMsg("회원가입 성공");
-        signupResponseDto.setStatusCode(200);
+        StatusResponseDto statusResponseDto = new StatusResponseDto();
+        statusResponseDto.setMsg("회원가입 성공");
+        statusResponseDto.setStatusCode(200);
 
-        return signupResponseDto;
+        return statusResponseDto;
 
     }
 }

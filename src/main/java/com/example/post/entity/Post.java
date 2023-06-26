@@ -31,7 +31,7 @@ public class Post extends Timestamped{
     }
 
     public void update(PostRequestDto requestDto) {
-        // 제목, 작성자명, 작성 내용을 수정
+        // 제목, 작성 내용을 수정
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
     }

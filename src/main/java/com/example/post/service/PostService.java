@@ -2,13 +2,13 @@ package com.example.post.service;
 
 import com.example.post.dto.PostRequestDto;
 import com.example.post.dto.PostResponseDto;
+import com.example.post.dto.StatusResponseDto;
 import com.example.post.entity.Post;
 import com.example.post.repository.PostRepository;
 import com.example.post.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -48,21 +48,31 @@ public class PostService {
     }
 
     @Transactional
-    public PostResponseDto updatePost(Long id, PostRequestDto requestDto) {
+    public PostResponseDto updatePost(Long id, PostRequestDto requestDto, UserDetailsImpl userDetails) {
         Post post = findPost(id);
 
-
-        post.update(requestDto);
-        PostResponseDto postResponseDto = new PostResponseDto(post);
-        return postResponseDto;
-
+        if (post.getUser().getUsername().equals(userDetails.getUsername())) {
+            post.update(requestDto);
+            PostResponseDto postResponseDto = new PostResponseDto(post);
+            return postResponseDto;
+        } else {
+            return null;
+        }
     }
 
-    public String deletePost(Long id, PostRequestDto requestDto) {
+    public StatusResponseDto deletePost(Long id, UserDetailsImpl userDetails) {
         Post post = findPost(id);
 
-        postRepository.delete(post);
-        return "{\"success\":\"true\"}";
+        if (userDetails.getUsername().equals(post.getUser().getUsername())) {
+            postRepository.delete(post);
+
+            StatusResponseDto statusResponseDto = new StatusResponseDto();
+            statusResponseDto.setMsg("게시글 삭제 성공");
+            statusResponseDto.setStatusCode(200);
+            return statusResponseDto;
+        } else {
+            return null;
+        }
 
     }
 

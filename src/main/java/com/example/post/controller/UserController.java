@@ -1,12 +1,8 @@
 package com.example.post.controller;
 
-import com.example.post.dto.LoginRequestDto;
 import com.example.post.dto.SignupRequestDto;
-import com.example.post.dto.SignupResponseDto;
-import com.example.post.security.UserDetailsImpl;
+import com.example.post.dto.StatusResponseDto;
 import com.example.post.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +24,7 @@ public class UserController {
 //    }
 
     @PostMapping("/user/signup")
-    public SignupResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
+    public StatusResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
         return userService.signup(signupRequestDto);
     }
     /* sign up 할 때, HttpservletResponse res, (res.setStatus), SignupRequestDto 를 매개변수로

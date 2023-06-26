@@ -1,7 +1,6 @@
 package com.example.post.security;
 
-import com.example.post.dto.SignupRequestDto;
-import com.example.post.dto.SignupResponseDto;
+import com.example.post.dto.StatusResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.post.dto.LoginRequestDto;
 import com.example.post.entity.UserRoleEnum;
@@ -14,12 +13,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j(topic = "로그인 및 JWT 생성")
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -83,12 +79,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         writer.flush();
     }
 
-    public SignupResponseDto signup(){
-        SignupResponseDto signupResponseDto = new SignupResponseDto();
-        signupResponseDto.setMsg("로그인 성공");
-        signupResponseDto.setStatusCode(200);
+    public StatusResponseDto signup(){
+        StatusResponseDto statusResponseDto = new StatusResponseDto();
+        statusResponseDto.setMsg("로그인 성공");
+        statusResponseDto.setStatusCode(200);
 
-        return signupResponseDto;
+        return statusResponseDto;
     }
 
     @Override

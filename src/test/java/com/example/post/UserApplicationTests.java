@@ -2,7 +2,7 @@ package com.example.post;
 
 import com.example.post.dto.LoginRequestDto;
 import com.example.post.dto.SignupRequestDto;
-import com.example.post.dto.SignupResponseDto;
+import com.example.post.dto.StatusResponseDto;
 import com.example.post.repository.PostRepository;
 import com.example.post.repository.UserRepository;
 import com.example.post.security.JwtAuthenticationFilter;
@@ -33,7 +33,7 @@ public class UserApplicationTests {
         signupRequestDto.setUsername("sysysysy");
         signupRequestDto.setPassword("highlight1234");
 
-        SignupResponseDto signup = userService.signup(signupRequestDto);
+        StatusResponseDto signup = userService.signup(signupRequestDto);
         System.out.println("signup.getMsg() = " + signup.getMsg());
         System.out.println("signup.getStatusCode() = " + signup.getStatusCode());
     }
