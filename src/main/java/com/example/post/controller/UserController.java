@@ -18,11 +18,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping("/user/login")
-//    public void login(@RequestBody LoginRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-//
-//    }
-
     @PostMapping("/user/signup")
     public StatusResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
         return userService.signup(signupRequestDto);
@@ -30,5 +25,4 @@ public class UserController {
     /* sign up 할 때, HttpservletResponse res, (res.setStatus), SignupRequestDto 를 매개변수로
     * 받아와서, 중복 확인하고 (Service로 넘겨라)
     * 맞으면, return 상태값 & 메세지 */
-
 }

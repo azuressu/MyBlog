@@ -22,7 +22,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private final JwtUtil jwtUtil;
 
-
     public JwtAuthenticationFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
         setFilterProcessesUrl("/api/user/login");
@@ -56,16 +55,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = jwtUtil.createToken(username, role);
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
 
-/*        response.setStatus(200);
-        response.getWriter().write("로그인 성공");
+        status(200, "로그인 성공", response);
+    }
 
-        // 버퍼를 비우고 응답을 전송
-        response.getWriter().flush();*/
+    @Override
+    public void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException {
+        response.setStatus(400);
+        status(400, "회원을 찾을 수 없습니다", response);
+    }
 
-        // 응답 상태 코드와 메시지 설정
-        int statusCode = 200;
-        String message = "로그인 성공";
-
+    // 상태 코드 반환하기
+    public void status(int statusCode, String message, HttpServletResponse response) throws IOException {
         // 응답 데이터를 JSON 형식으로 생성
         String jsonResponse = "{\"status\": " + statusCode + ", \"message\": \"" + message + "\"}";
 
@@ -77,18 +77,5 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         PrintWriter writer = response.getWriter();
         writer.write(jsonResponse);
         writer.flush();
-    }
-
-    public StatusResponseDto signup(){
-        StatusResponseDto statusResponseDto = new StatusResponseDto();
-        statusResponseDto.setMsg("로그인 성공");
-        statusResponseDto.setStatusCode(200);
-
-        return statusResponseDto;
-    }
-
-    @Override
-    public void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
-        response.setStatus(401);
     }
 }

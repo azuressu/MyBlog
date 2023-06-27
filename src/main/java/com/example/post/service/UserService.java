@@ -6,6 +6,7 @@ import com.example.post.entity.User;
 import com.example.post.entity.UserRoleEnum;
 import com.example.post.jwt.JwtUtil;
 import com.example.post.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -32,7 +34,7 @@ public class UserService {
 
     public StatusResponseDto signup(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
-
+        log.info(username);
         String inputpassword = requestDto.getPassword();
 
         if (Pattern.matches("^[a-zA-Z0-9]*$", inputpassword) && (inputpassword.length()>=8 && inputpassword.length()<=15)) {
@@ -60,8 +62,6 @@ public class UserService {
         } else {
             System.out.println("비밀번호 패턴에 맞지 않습니다.");
         }
-
-//        String password = passwordEncoder.encode(requestDto.getPassword());
 
         StatusResponseDto statusResponseDto = new StatusResponseDto();
         statusResponseDto.setMsg("회원가입 성공");
