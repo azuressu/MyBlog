@@ -17,18 +17,15 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가
-    private Long id;
-
     // 중복 안됨
+    @Id
     @Size(min = 4, max = 10)
     @Pattern(regexp = "^[a-z0-9]*$")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-//    @Size(min = 8, max = 15)
-//    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @Size(min = 8, max = 15)
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     @Column(name = "password", nullable = false)
     private String password;
 

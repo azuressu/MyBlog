@@ -29,39 +29,24 @@ public class UserService {
         this.jwtUtil = jwtUtil;
     }
 
-    // ADMIN_TOKEN
-    private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
-
     public StatusResponseDto signup(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
         log.info(username);
-        String inputpassword = requestDto.getPassword();
 
-        if (Pattern.matches("^[a-zA-Z0-9]*$", inputpassword) && (inputpassword.length()>=8 && inputpassword.length()<=15)) {
-            String password = passwordEncoder.encode(requestDto.getPassword());
+        String password = passwordEncoder.encode(requestDto.getPassword());
 
-            // 회원 중복 확인
-            Optional<User> checkUsername = userRepository.findByUsername(username);
-            if (checkUsername.isPresent()) {
-                throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
-            }
-
-            // 사용자 ROLE 확인
-            UserRoleEnum role = UserRoleEnum.USER;
-            if (requestDto.isAdmin()) {
-                if (!ADMIN_TOKEN.equals(requestDto.getAdminToken())) {
-                    throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
-                }
-                role = UserRoleEnum.ADMIN;
-            }
-
-            // 사용자 등록
-            User user = new User(username, password, role);
-            userRepository.save(user);
-
-        } else {
-            System.out.println("비밀번호 패턴에 맞지 않습니다.");
+        // 회원 중복 확인
+        Optional<User> checkUsername = userRepository.findByUsername(username);
+        if (checkUsername.isPresent()) {
+            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
         }
+
+        // 사용자 ROLE - USER로 등록
+        UserRoleEnum role = UserRoleEnum.USER;
+
+        // 사용자 등록
+        User user = new User(username, password, role);
+        userRepository.save(user);
 
         StatusResponseDto statusResponseDto = new StatusResponseDto();
         statusResponseDto.setMsg("회원가입 성공");

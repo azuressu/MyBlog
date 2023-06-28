@@ -22,7 +22,7 @@ public class Post extends Timestamped{
     private String contents;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "username")
     private User user;
 
     public Post(PostRequestDto requestDto) {

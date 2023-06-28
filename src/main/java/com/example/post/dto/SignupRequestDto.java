@@ -1,6 +1,8 @@
 package com.example.post.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +16,13 @@ public class SignupRequestDto {
     * DB에 중복된 username이 없다면 회원을 저장하고, Client로 성공했다는 메시지와 상태코드를 반환한다 */
 
     @NotBlank
+    @Size(min = 4, max = 10)
+    @Pattern(regexp = "^[a-z0-9]{4,10}$", message = "알파벳 소문자와 숫자만 입력 가능합니다")
     private String username;
 
     @NotBlank
+    @Size(min = 8, max = 15, message = "8자에서 15자로 입력해야 합니다")
+    @Pattern(regexp = "^[A-Za-z0-9@$!%*?&]*$", message = "알파벳 대소문자와 숫자, 특수문자만 입력 가능합니다")
     private String password;
 
     private boolean admin = false;
