@@ -82,9 +82,11 @@ public class PostController {
   public String deletePost(@PathVariable Long id, @RequestParam String password) {
     return postService.deletePost(id, password);
   }
-}```
+}
+```
 컨트롤러 역할을 하는 클래스이다.
 기능별로 url과 메소드를 매핑하여 메소드를 작성했다.
+
 2. PostRequestDto.java
 ```java
 @Getter
@@ -93,9 +95,11 @@ public class PostRequestDto {
   private String username;  // 작성자 이름
   private String contents;  // 게시글 내용
   private String password;  // 비밀번호
-}```
+}
+```
 사용자로부터 입력받을 값을 저장하기 위한 Dto 클래스이다.
 게시글의 제목, 작성자 이름, 게시글 내용, 비밀번호 필드를 private으로 선언하고, 그에 접근 가능한 Getter를 만들었다.
+
 3. PostResponseDto.java
 ```java
 @Getter
@@ -115,9 +119,11 @@ public class PostResponseDto {
     this.createTime = post.getCreateTime();
     this.modifyTime = post.getModifyTime();
     }
-}```
+}
+```
 사용자에게 보여줄 정보를 저장하기 위한 Dto클래스이다.
 id와 게시글 제목, 작성자 이름, 게시글 내용, 게시글 작성일, 게시글 수정일 필드를 private으로 선언하고, 그에 접근 가능한 Getter 메소드를 만들었다.
+
 4. Post.java
 ```java
 @Entity
@@ -149,10 +155,12 @@ public class Post extends Timestamped{
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
     }
-}```
+}
+```
 테이블에 넣어줄 엔티티 Post 클래스이다. (Timestamped 추상 클래스를 상속받는다)
 PK로 사용될 id와, 게시글 제목, 게시글 내용, 작성자명, 비밀번호를 필드를 private으로 선언하고, 각 필드에 접근 가능한 Getter와 설정 가능한 Setter 메소드를 만들었다.
 기본생성자와 파라미터 값을 받는 생성자를 만들고, 게시글 수정을 위한 메소드도 하나 만들었다. 
+
 5. Timestamped.java
 ```java
 @Getter
@@ -167,16 +175,20 @@ public abstract class Timestamped {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime modifyTime;
-}```
+}
+```
 작성일과 수정일 시간 데이터를 저장할 추상 클래스이다.
 LocalDateTime 형태의 작성일과 수정일 필드를 만들고 접근 가능한 Getter 메소드를 만들었다.
+
 6. PostRepository.java
 ```java
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findAllByOrderByCreateTimeDesc();
-}```
+}
+```
 Repository 역할의 PostRepository 인터페이스이다.
 JpaRepository를 상속받으며 Post 타입과 Long 타입을 갖고, 게시글들을 시간에 따라 내림차순 정렬하여 보여주기 위해 메소드를 만들었다.
+
 7. PostService.java
 ```java
 @Service
@@ -230,7 +242,8 @@ public class PostService {
         return postRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 게시글은 존재하지 않습니다."));
     }
-}```
+}
+```
 Service 기능을 수행할 수 있는 클래스이다.
 Repository 필드를 선언하고 생성자에 넣어준다.
 게시글 작성, 전체 게시글 조회, 선택 게시글 조회, 게시글 수정, 게시글 삭제 기능을 수행할 수 있는 메소드들을 만들고, id를 입력받았을 때, 해당 게시글을 찾아서 반환해주는 메소드를 만들었다.
